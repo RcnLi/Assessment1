@@ -39,7 +39,7 @@ function Modal({ closeModal, product }) {
 
         <div className='flex justify-between mt-6'>
           <button
-            className='bg-blue-500 text-white px-4 py-2 rounded-md shadow-md hover:bg-blue-600'
+            className='bg-blue-500 text-white px-4 py-2 rounded-md shadow-md hover:bg-blue-600 cursor-pointer'
             onClick={handlePreviousImage}
             disabled={images.length <= 1}
           >
@@ -47,7 +47,7 @@ function Modal({ closeModal, product }) {
           </button>
 
           <button
-            className='bg-green-500 text-white px-4 py-2 rounded-md shadow-md hover:bg-green-600'
+            className='bg-green-500 text-white px-4 py-2 rounded-md shadow-md hover:bg-green-600 cursor-pointer'
             onClick={handleNextImage}
             disabled={images.length <= 1}
           >
@@ -62,7 +62,7 @@ function Modal({ closeModal, product }) {
         </div>
 
         <div className='border-t-2 border-gray-500 mt-4'>
-          <button className='absolute right-3 p-4 bg-gray-300 hover:bg-gray-400 text-black rounded-md' onClick={() => closeModal(false)}>
+          <button className='absolute right-3 p-3 m-1 cursor-pointer bg-gray-300 hover:bg-gray-400 text-black rounded-md' onClick={() => closeModal(false)}>
             Close
           </button>
         </div>
