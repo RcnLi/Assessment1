@@ -14,11 +14,14 @@ function Dashboard() {
 
   return (
     <div>
+      <div className='flex flex-col justify-center items-center bg-blue-500 text-4xl font-bold text-white'>
       <h1>Dashboard</h1>
       <p>Dashboard content</p>
       <p>Welcome to my dashboard</p>
+      </div>
+     
       <ProductTable />
-      <button onClick={handleLogout}>Logout</button>
+      <button className='p-2 bg-red-800 m-5 rounded-md text-white font-bold cursor-pointer' onClick={handleLogout}>Logout</button>
     </div>
   );
 }
