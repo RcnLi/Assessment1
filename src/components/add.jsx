@@ -10,7 +10,7 @@ function Add({ closeModal, addProduct, lastProductId }) {
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
     if (file) {
-      setImage(URL.createObjectURL(file)); // Preview the uploaded image
+      setImage(URL.createObjectURL(file)); 
     }
   };
 
