@@ -114,7 +114,7 @@ const ProductTable = () => {
           <input
             onChange={handleSearch}
             value={input}
-            className="w-full p-3 border border-gray-600 rounded-xl pr-10"
+            className="w-full p-3 border border-gray-600 rounded-s pr-10"
             placeholder="Search smartphone"
           />
           {showClear && (
@@ -131,65 +131,67 @@ const ProductTable = () => {
           <div className="text-center text-lg font-semibold text-blue-500">Searching...</div>
         ) : (
           <>
-            <div className="overflow-x-auto">
-              <table className="table-auto border-collapse border border-gray-300 w-full max-w-auto mx-auto">
-                <thead className="bg-blue-400 text-white">
-                  <tr>
-                    <th className="border border-gray-300 px-4 py-2">ID</th>
-                    <th className="border border-gray-300 px-1 py-1">Title</th>
-                    <th className="border border-gray-300 px-4 py-2">Price</th>
-                    <th className="border border-gray-300 px-1 py-1">Description</th>
-                    <th className="border border-gray-300 px-4 py-2">Category</th>
-                    <th className="border border-gray-300 px-4 py-2">Image</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {currentProducts.map((product) => (
-                    <tr key={product.id} className="odd:bg-gray-50 even:bg-gray-100">
-                      <td className="border border-gray-300 px-4 py-2 text-sm">{product.id}</td>
-                      <td className="border border-gray-300 px-4 py-2 text-sm">{product.title}</td>
-                      <td className="border border-gray-300 px-4 py-2 text-sm">${product.price}</td>
-                      <td className="border border-gray-300 px-4 py-2 text-sm">{product.description}</td>
-                      <td className="border border-gray-300 px-4 py-2 text-sm">{product.category}</td>
-                      <td
-                        onClick={() => setSelectedProduct(product)}
-                        className="border border-gray-300 px-4 py-2 text-sm cursor-pointer"
-                      >
-                        {product.images.map((image, index) => (
-                          <img
-                            key={index}
-                            src={image}
-                            alt={product.title}
-                            className="w-12 h-12 object-cover rounded-md"
-                          />
-                        ))}
-                      </td>
-                      <td className="border border-gray-300 px-4 py-2 text-sm">
-                        <button
-                          onClick={() => {
-                            setProductToDelete(product.id);
-                            setShowDeleteModal(true);
-                          }}
-                          className="bg-red-500 cursor-pointer p-3 rounded-md font-bold text-white m-1"
-                        >
-                          Delete
-                        </button>
-                        <button
-                          onClick={() => {
-                            setProductToUpdate(product);
-                            setShowUpdateModal(true);
-                          }}
-                          className="bg-orange-500 cursor-pointer p-3 rounded-md font-bold text-white m-1"
-                        >
-                          Update
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+            <div className="overflow-x-auto w-full">
+        <table className="table-auto border-collapse w-full">
+          <thead className="text-md text-black hidden sm:table-header-group">
+            <tr className="bg-gray-200">
+              <th className="px-4 py-3 text-sm sm:text-base">Thumbnail</th>
+              <th className="px-2 py-1 text-center text-sm sm:text-base">Name</th>
+              <th className="px-1 py-1 text-left hidden sm:table-cell">Description</th>
+              <th className="px-5 py-4 text-sm sm:text-base">Price</th>
+              <th className="text-sm sm:text-base">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {currentProducts.map((product) => (
+              <tr className="px-4 py-2 cursor-pointer odd:bg-gray-50 even:bg-gray-100 hover:bg-gray-200"  key={product.id} >
+                <td onClick={() => setSelectedProduct(product)} className='flex items-center justify-center'>
+                  <img src={product.images[0]} alt={product.title} className="w-10 sm:w-12 h-10 sm:h-12 object-cover rounded-md" />
+                </td>
+                <td onClick={() => setSelectedProduct(product)}  className="px-2 sm:px-4 py-2 text-xs sm:text-sm sm:text-top">{product.title}</td>
+                <td
+                onClick={() => setSelectedProduct(product)}
+                className="
+                  px-4 py-2 text-xs sm:text-sm 
+                  truncate max-w-[250px] 
+                  sm:whitespace-normal sm:overflow-visible sm:max-w-none
+                "
+              >
+                {product.description}
+              </td>
+                <td onClick={() => setSelectedProduct(product)}  className="px-2 sm:px-4 py-2 text-xs sm:text-sm text-center">
+                  <div className="flex flex-col items-center">
+                    <span className="text-blue-500 font-bold">₱{product.price}</span>
+                    <span className="text-white text-xs bg-blue-600 rounded-xl p-1 sm:p-2 mt-1">
+                      {Math.ceil(product.discountPercentage)}% Off
+                    </span>
+                  </div>
+                </td>
+                <td className="px-2 sm:px-4 py-2 flex flex-col sm:flex-row items-center gap-2">
+                  <button
+                    onClick={() => {
+                      setProductToDelete(product.id);
+                      setShowDeleteModal(true);
+                    }}
+                    className="bg-red-500 cursor-pointer px-2 sm:px-3 py-1 sm:py-2 rounded-md font-bold text-white text-xs sm:text-sm"
+                  >
+                    Delete
+                  </button>
+                  <button
+                    onClick={() => {
+                      setProductToUpdate(product);
+                      setShowUpdateModal(true);
+                    }}
+                    className="bg-orange-500 cursor-pointer px-2 sm:px-3 py-1 sm:py-2 rounded-md font-bold text-white text-xs sm:text-sm"
+                  >
+                    Update
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
 
             <div className="flex justify-between items-center mt-4">
               <div>

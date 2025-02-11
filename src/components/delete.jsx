@@ -7,7 +7,7 @@ function Delete({ closeModal, deleteProduct, productId, product }) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 justify-center items-center flex">
+    <div className="fixed inset-0 z-50 justify-center items-center flex bg-black/50">
       <div className='bg-white w-[40%] h-[40%] font-bold text-red-700 p-4 rounded-xl shadow-lg flex justify-center items-center flex-col'>
         <div className='mb-5'>
           Are you sure you want to delete this product?
